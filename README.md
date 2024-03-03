@@ -16,7 +16,8 @@ Welcome to my submission for the Ombori full-stack position code test. This proj
 - **Homepage with Typewriter Effect**: Features an additional homepage with welcoming text using a typewriter effect, engaging users from the start.
 - **React Router**: Utilizes React Router for SPA experience, with a main route ('/') and a users directory page ('/users').
 - **Lazy Loading of Images**: Implements lazy loading for images within the users directory, ensuring images are loaded efficiently and only as needed, further optimizing performance.
-- **ESLint Configuration**: Follows the recommended linting setup to ensure code quality, readability, and consistency across the project. This includes enforcing rules for TypeScript and React, promoting best practices and preventing common errors.
+- **ESLint Configuration**: Follows the recommended linting setup to ensure code quality, readability, and consistency across the project. This includes enforcing rules for TypeScript and React, promoting best practices and preventing common errors. Refer to the ESLint documentation and the `.eslintrc.json` file in the project root.
+- **Search Functionality**: Implements a sleek, expandable search bar allowing users to search through the user directory dynamically, enhancing the usability and interactivity of the application.
 
 ## Running the Project
 
@@ -34,9 +35,6 @@ To get the project up and running on your local machine, follow these steps:
 
 By following these instructions, you should be able to successfully run the project on your local environment and explore its features.
 
-## Linting Configuration
-
-The project includes an ESLint configuration tailored for a TypeScript and React codebase, ensuring adherence to best practices and industry standards. If you wish to modify or extend the linting rules, refer to the ESLint documentation and the `.eslintrc.json` file in the project root.
 
 ## Conclusion
 
