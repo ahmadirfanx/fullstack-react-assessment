@@ -12,9 +12,9 @@ const StyledCard = styled(Card)(({ theme }) => ({
     alignItems: 'center',
     padding: theme.spacing(2),
     transition: '0.3s',
-    boxShadow: '0 8px 40px -12px rgba(0,0,0,0.3)',
+    boxShadow: '0 2px 10px -5px rgba(0,0,0,0.3)',
     '&:hover': {
-        boxShadow: '0 16px 70px -12.125px rgba(0,0,0,0.3)'
+        boxShadow: '0 8px 20px -10px rgba(0,0,0,0.3)'
     }
 }));
 
@@ -79,7 +79,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
             viewport={{ once: true, amount: 0.1 }}
             variants={cardVariants}
         >
-            <StyledCard>
+            <StyledCard variant="outlined">
                 <Avatar
                     alt={`${user.first_name} ${user.last_name}`} // Accessibility label for the avatar
                     src={user.avatar} // Source URL for the user's avatar image

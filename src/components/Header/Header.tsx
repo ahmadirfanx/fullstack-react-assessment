@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ previousPageName = "" }) => {
 
                     {/* Displaying the appropriate icon based on the current theme mode */}
                     <IconButton onClick={toggleThemeMode} color="inherit">
-                        {themeMode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
+                        {themeMode === 'dark' ? <Brightness4Icon /> : <Brightness7Icon />}
                     </IconButton>
                 </Toolbar>
             </AppBar>

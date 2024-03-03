@@ -6,6 +6,8 @@ import UserCard from '../../components/UserCard/UserCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../../components/Header/Header';
 import { Box, Container, Grid, Typography } from '@mui/material';
+import SearchBar from '../../components/SearchBar/SearchBar';
+
 
 // Type definition for a User object based on API response structure.
 interface User {
@@ -21,67 +23,82 @@ const UsersPage: React.FC = () => {
     /**
      * Utilizes React Query for data fetching and caching, providing infinite scroll functionality.
      */
-    const {
-        data,
-        isLoading,
-        hasNextPage,
-        fetchNextPage,
-    } = useInfiniteQuery(
+    const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
         'users',
         ({ pageParam = 1 }) => fetchUsers(pageParam), // Dynamically fetches users based on the page parameter.
         {
-            getNextPageParam: (lastPage) => {
-                // Determines the next page to be fetched, ensuring pagination works correctly.
-                return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined;
-            },
-            cacheTime: 1000 * 60 * 5, // Specifies how long fetched data is cached.
+            // Determines the next page to be fetched, ensuring pagination works correctly.
+            getNextPageParam: (lastPage) => lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
+            cacheTime: 1000 * 60 * 5, // Cached data time period
             staleTime: 1000 * 60, // Specifies how long fetched data is considered fresh.
             refetchOnWindowFocus: true, // Refetches data when the window regains focus, ensuring data freshness.
         }
     );
 
-    const [loading, setLoading] = useState<boolean>(true); // Manages the loading state separately for initial data loading.
+    // UI Control Vars
+    const [loading, setLoading] = useState<boolean>(true); // Loader
     const containerRef = useRef<HTMLDivElement>(null); // Ref for the container to manage scroll events and checks.
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
+
         // Simulates a loading state to demonstrate asynchronous data fetching.
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 200);
+        }, 3000);
+
         return () => clearTimeout(timer); // Cleanup to prevent memory leaks.
     }, []);
 
+
+    // Filter users based on search query
+    const filteredUsers = data?.pages?.flatMap((page) => page.data)
+        ?.filter((user) =>
+            `${user.first_name} ${user.last_name}`.toLowerCase().includes(searchQuery.toLowerCase())
+        ) || [];
 
     return (
         <Container maxWidth="lg">
 
             <Header previousPageName="Home" />
 
-            {/* Display loader when either initial loading or fetching of data is in progress */}
-            {loading || isLoading ? (
-                <Loader />
-            ) : (
+            {/* loader when either initial loading or fetching of data is in progress */}
+            {(loading || isLoading) && <Loader />}
+
+            {(!loading && !isLoading) && (
                 <Box sx={{ flexGrow: 1, minHeight: '100vh' }} ref={containerRef}>
-                    <Typography variant="h4" component="h1" gutterBottom sx={{ marginTop: 4, textAlign: 'center' }}>
-                        User Directory
-                    </Typography>
+
+                    {/* Page Title & Search Bar */}
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 }}>
+
+                        {/* Page Title, with Adjustable Height for different Screens */}
+                        <Typography variant="h4" component="h1" gutterBottom sx={{
+                            fontSize: {
+                                xs: '1.25rem', sm: '1.5rem', md: '2.125rem'
+                            }
+                        }}>User Directory</Typography>
+
+                        {/* Search Bar */}
+                        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+                    </Box>
+
 
                     {/* InfiniteScroll component to enable fetching more data as the user scrolls */}
                     <InfiniteScroll
-                        dataLength={data?.pages?.flatMap(page => page.data).length ?? 0}
-                        next={fetchNextPage} // Function to fetch the next page of data.
-                        hasMore={!!hasNextPage} // Indicates if more data is available for fetching.
-                        loader={<Typography variant="overline">Scroll to fetch more</Typography>} // Loader displayed during data fetching.
+                        dataLength={filteredUsers.length}
+                        next={fetchNextPage}
+                        hasMore={!!hasNextPage}
+                        loader={<Typography variant="overline">Scroll to load more</Typography>} // Loader displayed during data fetching.
                         endMessage={
                             <Typography variant="subtitle1" sx={{ textAlign: 'center', marginTop: 2 }}>
-                                No more users {/* Message displayed when all data has been fetched. */}
+                                No more users
                             </Typography>
                         }
                     >
 
                         {/* Grid to show the list of all Users */}
-                        <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="center">
-                            {data?.pages?.flatMap(page => page.data).map((user: User) => (
+                        <Grid container spacing={{ xs: 2, md: 3 }} justifyContent="center">
+                            {filteredUsers.map((user: User) => (
                                 <Grid item xs={12} md={6} key={user.id}>
                                     <UserCard user={user} />
                                 </Grid>
@@ -90,6 +107,7 @@ const UsersPage: React.FC = () => {
                     </InfiniteScroll>
                 </Box>
             )}
+
         </Container>
     );
 };

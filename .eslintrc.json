@@ -1,0 +1,36 @@
+{
+    "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+    "parserOptions": {
+      "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+      "sourceType": "module", // Allows for the use of imports
+      "ecmaFeatures": {
+        "jsx": true // Allows for the parsing of JSX
+      },
+      "project": "./tsconfig.json" // Specify the TypeScript config file
+    },
+    "settings": {
+      "react": {
+        "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+      }
+    },
+    "extends": [
+      "eslint:recommended", // Use the recommended rules from ESLint
+      "plugin:@typescript-eslint/recommended", // Use the recommended rules from @typescript-eslint/eslint-plugin
+      "plugin:react/recommended" // Use the recommended rules from eslint-plugin-react
+    ],
+    "env": {
+      "browser": true, // Enables browser globals like window and document
+      "es6": true, // Enables ES6 global variables
+      "node": true // Enables Node.js global variables and Node.js scoping.
+    },
+    "plugins": [
+      "@typescript-eslint", // Uses the TypeScript plugin
+      "react" // Uses the React plugin
+    ],
+    "rules": {
+      // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+      // e.g., "@typescript-eslint/explicit-function-return-type": "off",
+      "react/prop-types": "off", // Disable prop-types as we use TypeScript for type checking
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }] // Ignore unused variables prefixed with an underscore
+    }
+  }
