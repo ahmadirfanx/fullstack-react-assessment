@@ -5,7 +5,7 @@ import { AppBar, Toolbar, IconButton, Typography, CssBaseline } from '@mui/mater
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'; // Icon for the back button
 import Brightness4Icon from '@mui/icons-material/Brightness4'; // Icon for dark mode toggle
 import Brightness7Icon from '@mui/icons-material/Brightness7'; // Icon for light mode toggle
-import { RootState } from '../../store/store';
+import { RootState } from '../../../Store/store';
 
 // Interface defining the props for the Header component
 interface HeaderProps {

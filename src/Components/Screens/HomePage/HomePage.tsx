@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Box, Typography, Link, Paper, Modal } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import TypeWriter from '../../components/Typewriter/Typewriter';
+import Header from '../../Helper/Header/Header';
+import TypeWriter from '../../Helper/Typewriter/Typewriter';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { mainBoxStyle, buttonStyle, footerTextStyle, modalStyle } from './HomePage.styles';
 import Favorite from '@mui/icons-material/Favorite';

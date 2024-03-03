@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from '@mui/material/styles';
-import { lightTheme, darkTheme } from './theme/theme';
-import { RootState } from './store/store'
-import Router from './router/Router';
+import { lightTheme, darkTheme } from './Theme/theme';
+import { RootState } from './Store/store'
+import Router from './Router/Router';
 // Global CSS styles
 import './App.css';
 

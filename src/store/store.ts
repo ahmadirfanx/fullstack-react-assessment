@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 // Import the themeReducer, which manages state related to theme settings (e.g., light or dark mode)
-import { themeReducer } from '../theme/reducer';
+import { themeReducer } from '../Theme/reducer';
 
 // Use combineReducers to create a single root reducer out of many reducing functions.
 // This allows for separate concerns within the global state, facilitating easier management and scalability.

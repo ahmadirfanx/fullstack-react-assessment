@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { fetchUsers } from '../../api/users';
-import Loader from '../../components/Loader/Loader';
-import UserCard from '../../components/UserCard/UserCard';
+import { fetchUsers } from '../../../API/users';
+import Loader from '../../Helper/Loader/Loader';
+import UserCard from '../../Helper/UserCard/UserCard';
+import Header from '../../Helper/Header/Header';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Header from '../../components/Header/Header';
 import { Box, Container, Grid, Typography } from '@mui/material';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchBar from '../../Helper/SearchBar/SearchBar';
 
 
 // Type definition for a User object based on API response structure.

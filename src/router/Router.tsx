@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 
 // Components
-import HomePage from '../screens/HomePage/HomePage';
-import UsersPage from '../screens/UsersPage/UsersPage';
+import HomePage from '../Components/Screens/HomePage/HomePage';
+import UsersPage from '../Components/Screens/UsersPage/UsersPage';
 
 
 function Router() {
