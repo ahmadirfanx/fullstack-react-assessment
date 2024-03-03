@@ -25,7 +25,6 @@ const UsersPage: React.FC = () => {
         data,
         isLoading,
         hasNextPage,
-        isFetchingNextPage,
         fetchNextPage,
     } = useInfiniteQuery(
         'users',

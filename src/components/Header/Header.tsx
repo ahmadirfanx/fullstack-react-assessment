@@ -5,6 +5,7 @@ import { AppBar, Toolbar, IconButton, Typography, CssBaseline } from '@mui/mater
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'; // Icon for the back button
 import Brightness4Icon from '@mui/icons-material/Brightness4'; // Icon for dark mode toggle
 import Brightness7Icon from '@mui/icons-material/Brightness7'; // Icon for light mode toggle
+import { RootState } from '../../store/store';
 
 // Interface defining the props for the Header component
 interface HeaderProps {
@@ -21,9 +22,9 @@ interface HeaderProps {
  */
 const Header: React.FC<HeaderProps> = ({ previousPageName = "" }) => {
     const dispatch = useDispatch(); // Hook to dispatch actions to the Redux store
-    const themeMode = useSelector((state: any) => state.theme.themeMode); // Accessing the current theme mode from Redux store
+    const themeMode = useSelector((state: RootState) => state.theme.themeMode); // Accessing the current theme mode from Redux store
 
-    let navigate = useNavigate(); // Hook for programmatic navigation
+    const navigate = useNavigate(); // Hook for programmatic navigation
 
     // Function to toggle the theme mode between light and dark
     const toggleThemeMode = () => {

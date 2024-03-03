@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Box, Typography, useMediaQuery, useTheme, Link, Paper, Modal } from '@mui/material';
+import { Button, Box, Typography, Link, Paper, Modal } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import TypeWriter from '../../components/Typewriter/Typewriter';
@@ -12,7 +12,6 @@ const HomePage: React.FC = () => {
 
     // Hooks for navigation and responsive design.
     const navigate = useNavigate();
-    const theme = useTheme();
 
     // State management for modal visibility.
     const [open, setOpen] = useState(false);
