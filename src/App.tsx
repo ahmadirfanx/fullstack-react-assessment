@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from '@mui/material/styles';
+import { lightTheme, darkTheme } from './theme/theme';
+import { RootState } from './store/store'
+import Router from './router/Router';
 import './App.css';
 
+const queryClient = new QueryClient();
+
 function App() {
+  const themeMode = useSelector((state: RootState) => state.theme.themeMode);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
+        <Router></Router>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

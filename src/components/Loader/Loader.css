@@ -1,0 +1,42 @@
+/* Loader.css */
+.loader {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .inner-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #7FB800; /* Adjust color as needed */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .outer-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(208, 228, 163, 0.7); /* Adjust color and opacity as needed */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite ease-in-out;
+  }
+   
+  @keyframes pulse {
+    0% {
+      width: 40px;
+      height: 40px;
+      opacity: 0.6;
+    }
+    100% {
+      width: 100px;
+      height: 100px;
+      opacity: 0;
+    }
+  }
